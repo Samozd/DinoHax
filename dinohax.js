@@ -25,7 +25,7 @@ document.getElementById("endgame").style.cssFloat = "left";
 var old1 = false;
 var old2 = false;
 var old3 = false;
-var a = checkForCollision;
+var a = Runner.instance_.gameOver;
 var b = [Obstacle.types,Horizon.prototype.addNewObstacle,checkForCollision];
 
 // vars above
