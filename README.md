@@ -9,6 +9,6 @@ setTimeout(function(){
     jQuery.getScript('https://raw.githubusercontent.com/Samozd/DinoHax/main/dinohax.js')
 },250);
 ```
-or just execute the code founded in dinohax.js.
+or just execute the code founded in dinohax.js. A wrong CORB detection will be made due to the fact that I can't github if you use this on a live webpage.
 
 This is my first repo, so tell me if I made a mistake. Thank you!
