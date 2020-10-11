@@ -7,7 +7,7 @@ document
 .evaluate('//*[text()="ERR_INTERNET_DISCONNECTED"]', document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE)
 .snapshotItem(0)
 // begin html
-.innerHTML = "<body><a>Thank you for using SamHack</a><br><br><a>Invincibility</a><input type=\"checkbox\"id=\"invin\"><br><br><a>Set Speed			</a><input type=\"text\" id=\"spd\" name=\"spd\"><br><button onclick=\"setspd()\"id=\"setspd\">Set Speed</button><br><br><br><a>Set High Score			</a><input type=\"text\" id=\"scr\" name=\"scr\"><br><button onclick=\"setshs()\"id=\"setshs\">Set High Score</button><br><br><br><a>Remove Cactus</a><input type=\"checkbox\"id=\"cac\"><br><button onclick=\"a()\"id=\"endgame\">End Game</button><br><br><br><a>Weird stuff</a><br><a>Set State			</a><br><button onclick=\"setsta('crashed')\"id=\"setstcr\">CRASHED</button><button onclick=\"setsta('ducking')\"id=\"setstdu\">DUCKING</button><button onclick=\"setsta('jumping')\"id=\"setstju\">JUMPING</button><button onclick=\"setsta('running')\"id=\"setstru\">RUNNING</button><button onclick=\"setsta('waiting')\"id=\"setstwa\">WAITING</button></body>";
+.innerHTML = "<body><a>Thank you for using SamHack</a><br><br><a>Invincibility</a><input type=\"checkbox\"id=\"invin\"><br><br><a>Set Speed			</a><input type=\"text\" id=\"spd\" name=\"spd\"><br><button onclick=\"setspd()\"id=\"setspd\">Set Speed</button><br><br><br><a>Set High Score			</a><input type=\"text\" id=\"scr\" name=\"scr\"><br><button onclick=\"setshs()\"id=\"setshs\">Set High Score</button><br><br><br><a>Remove Cactus</a><input type=\"checkbox\"id=\"cac\"><br><button onclick=\"game0ver()\"id=\"endgame\">End Game</button><br><br><br><a>Weird stuff</a><br><a>Set State			</a><br><button onclick=\"setsta('crashed')\"id=\"setstcr\">CRASHED</button><button onclick=\"setsta('ducking')\"id=\"setstdu\">DUCKING</button><button onclick=\"setsta('jumping')\"id=\"setstju\">JUMPING</button><button onclick=\"setsta('running')\"id=\"setstru\">RUNNING</button><button onclick=\"setsta('waiting')\"id=\"setstwa\">WAITING</button></body>";
 // end html
 document.getElementById("invin").style.opacity = 100;
 document.getElementById("cac").style.opacity = 100;
@@ -90,5 +90,30 @@ setInterval(function (){
 		old2 = document.getElementById("cac").checked;
 	}
 })
+
+// extra functions below
+
+function game0ver() {
+    Runner.instance_.playSound(Runner.instance_.soundFx.HIT);
+    vibrate(200);
+    Runner.instance_.stop();
+    Runner.instance_.crashed = true;
+    Runner.instance_.distanceMeter.achievement = false;
+    Runner.instance_.tRex.update(100, Trex.status.CRASHED);
+    if (!Runner.instance_.gameOverPanel) {
+        if (Runner.instance_.canvas) {
+        Runner.instance_.gameOverPanel = new GameOverPanel(Runner.instance_.canvas,
+            Runner.instance_.spriteDef.TEXT_SPRITE, Runner.instance_.spriteDef.RESTART,
+            Runner.instance_.dimensions);
+      }
+    } else {
+      Runner.instance_.gameOverPanel.draw();
+    }
+    if (Runner.instance_.distanceRan > Runner.instance_.highestScore) {
+      Runner.instance_.saveHighScore(Runner.instance_.distanceRan);
+    }
+    Runner.instance_.time = getTimeStamp();
+}
+// end
 
 console.log('Succesfully loaded.');
