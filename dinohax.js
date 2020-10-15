@@ -104,7 +104,7 @@ setInterval(function (){
         old3 = document.getElementById("remv").checked
     } else {
         if (old3 != document.getElementById("remv").checked) {
-            Runner.instance_.setSpeed(2);
+            Runner.instance_.setSpeed(6);
             old3 = document.getElementById("remv").checked
         }
 	}
