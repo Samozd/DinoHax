@@ -1,7 +1,29 @@
+var bowser = document.createElement('script');
+var loaded = false;
+bowser.src = "https://unpkg.com/bowser@2.11.0/es5.js";
+document.getElementsByTagName('head')[0].appendChild(bowser);
+setInterval(function(){
+  if (bowser.length == 0) {
+    if (!loaded) {
+      var result = bowser.getParser(window.navigator.userAgent);
+      loaded = true;
+      if (result.parsedResult.browser.name != "Chrome") {
+        alert('You are not using a supported browser.')
+        throw new Error('You need to be on chrome to use this script.')
+      } else if (result.parsedResult.browser.version.slice(0,2) < 73) {
+        alert('You are not using Chrome version 73.0.3683 or higher.')
+        throw new Error('You are not playing on a supported version.')
+      }
+    }
+  }
+})
 if (document.title != "chrome://dino/") {
         alert('You need to be on chrome://dino to execute this script.');
         throw new Error('Wrong webpage');
 }
+
+// obstacles above
+
 document.title = "chrome://dino";
 const html = "<body><a>Thank you for using SamHack</a><br><br><a>Invincibility</a><input type=\"checkbox\"id=\"invin\"><br><a>Set Speed			</a><input type=\"text\" id=\"spd\" name=\"spd\"><br><button onclick=\"setspd()\"id=\"setspd\">Set Speed</button><br><br><a>Set High Score			</a><input type=\"text\" id=\"scr\" name=\"scr\"><br><button onclick=\"setshs()\"id=\"setshs\">Set High Score</button><br><br><a>Remove Cactus</a><input type=\"checkbox\"id=\"cac\"><br><button onclick=\"game0ver()\"id=\"endgame\">End Game</button><br><br><a>Stop Dino</a><input type=\"checkbox\"id=\"remv\"><br><br><a>Weird stuff</a><br><a>Set State			</a><br><button onclick=\"setsta('crashed')\"id=\"setstcr\">CRASHED</button><button onclick=\"setsta('ducking')\"id=\"setstdu\">DUCKING</button><button onclick=\"setsta('jumping')\"id=\"setstju\">JUMPING</button><button onclick=\"setsta('running')\"id=\"setstru\">RUNNING</button><button onclick=\"setsta('waiting')\"id=\"setstwa\">WAITING</button></body>";
 document
