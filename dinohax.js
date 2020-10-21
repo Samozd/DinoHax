@@ -8,15 +8,16 @@ setInterval(function(){
       var result = bowser.getParser(window.navigator.userAgent);
       loaded = true;
       if (result.parsedResult.browser.name != "Chrome") {
-        alert('You are not using a supported browser.')
-        throw new Error('You need to be on chrome to use this script.')
+        alert('You are not using a supported browser.');
+        throw new Error('You need to be on chrome to use this script.');
       } else if (result.parsedResult.browser.version.slice(0,2) < 73) {
-        alert('You are not using Chrome version 73.0.3683 or higher.')
-        throw new Error('You are not playing on a supported version.')
+        alert('You are not using Chrome version 73.0.3683 or higher.');
+        throw new Error('You are not playing on a supported version.');
       }
     }
   }
 })
+
 if (document.title != "chrome://dino/") {
         alert('You need to be on chrome://dino to execute this script.');
         throw new Error('Wrong webpage');
@@ -51,6 +52,7 @@ var old2;
 var old3 = false;
 var a = Runner.instance_.gameOver;
 var b = [Obstacle.types,Horizon.prototype.addNewObstacle,checkForCollision];
+var gitlink = 'https://raw.githubusercontent.com/Samozd/DinoHax/main/dinohax.js';
 
 // vars above
 
@@ -101,11 +103,11 @@ setInterval(function (){
     }
     if (document.getElementById("remv").checked) {
         Runner.instance_.setSpeed(0.01);
-        old3 = document.getElementById("remv").checked
+        old3 = document.getElementById("remv").checked;
     } else {
         if (old3 != document.getElementById("remv").checked) {
             Runner.instance_.setSpeed(6);
-            old3 = document.getElementById("remv").checked
+            old3 = document.getElementById("remv").checked;
         }
 	}
 })
@@ -135,4 +137,4 @@ function game0ver() {
 }
 // end
 
-console.log('Succesfully loaded.');
+console.log('Succesfully loaded.\nThank you for using SamHack. If you did not load this through '+gitlink+', you might have gotten an old version. If that is the case, please refresh the page and go to '+gitlink+' to get the original, updated script.');
