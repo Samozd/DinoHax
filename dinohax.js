@@ -1,6 +1,6 @@
 var bowser = document.createElement('script');
 var loaded = false;
-bowser.src = "https://unpkg.com/bowser@2.11.0/es5.js";
+bowser.src = "./bowser.js";
 document.getElementsByTagName('head')[0].appendChild(bowser);
 setInterval(function(){
   if (bowser.length == 0) {
